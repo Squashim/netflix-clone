@@ -12,7 +12,6 @@ const Home = () => {
 				rowID='1'
 				title='NETFLIX ORIGINALS'
 				fetchURL={requests.requestNetflix}
-				isLargeRow
 			/>
 			<Row rowID='2' title='Trending' fetchURL={requests.requestTrending} />
 			<Row rowID='3' title='Top Rated' fetchURL={requests.requestTopRated} />

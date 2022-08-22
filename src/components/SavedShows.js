@@ -40,28 +40,28 @@ const SavedShows = () => {
 	return (
 		<>
 			<h2 className='text-white font-bold md:text-xl p-4'>My Shows</h2>
-			<div className='relative flex items-center group'>
+			<div className=' relative flex items-center group'>
 				<MdChevronLeft
 					size={40}
-					className='bg-white rounded-full absolute opacity-70 hover:opacity-100 cursor-pointer z-[10] hidden group-hover:block left-0'
+					className='bg-white rounded-full absolute opacity-70 hover:opacity-100 cursor-pointer z-[40] hidden group-hover:block left-0'
 					onClick={slideLeft}
 				/>
 				<div
 					id={"slider"}
-					className='w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative'>
+					className='ml-4 w-full h-full flex space-x-4 overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative'>
 					{movies.map((item, id) => (
 						<div
 							key={id}
-							className='w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2'>
+							className='relative flex-none group-1 w-[320px] h-48 hover:scale-110 duration-200 transition transform ease-out cursor-pointer hover:z-20'>
 							<img
-								className='w-full h-auto block'
+								className='w-[280px] sm:w-full h-full object-cover rounded-md hover:brightness-50'
 								src={`https://image.tmdb.org/t/p/w500/${item?.img}`}
 								alt={item?.title}
 							/>
 							<div className='absolute top-0 left-0 w-full h-full hover:bg-black/80 hover:opacity-100 opacity-0 text-white'>
-								<p className='white-space-normal text-xs md:text-sm font-bold flex justify-center items-center h-full text-center'>
-									{item?.title}
-								</p>
+								<h2 className='z-50 absolute bottom-5 text-center w-full text-white text-lg font-medium hidden group-1-hover:block cursor-pointer px-3'>
+									{item?.title || item.name || item.orignal_name}
+								</h2>
 								<p
 									onClick={() => deleteShow(item.id)}
 									className='absolute text-gray-300 top-4 right-4'>
@@ -73,7 +73,7 @@ const SavedShows = () => {
 				</div>
 				<MdChevronRight
 					size={40}
-					className='bg-white rounded-full absolute opacity-70 hover:opacity-100 cursor-pointer z-[10] hidden group-hover:block right-0'
+					className='bg-white rounded-full absolute opacity-70 hover:opacity-100 cursor-pointer z-[50] hidden group-hover:block right-0'
 					onClick={slideRight}
 				/>
 			</div>
