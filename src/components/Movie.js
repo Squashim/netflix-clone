@@ -4,7 +4,7 @@ import { UserAuth } from "../context/AuthContext";
 import { db } from "../firebase";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 
-const Movie = ({ item }) => {
+const Movie = ({ item, isLargeRow }) => {
 	const [like, setLike] = useState(false);
 	const [saved, setSaved] = useState(false);
 	const { user } = UserAuth();
@@ -28,25 +28,52 @@ const Movie = ({ item }) => {
 	};
 
 	return (
-		<div className='w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2'>
+		<div
+			className={`${
+				isLargeRow
+					? "flex-none h-auto py-6"
+					: "flex-none group w-80 h-48 hover:scale-110 duration-200 transition transform ease-out cursor-pointer hover:z-20"
+			}`}>
 			<img
-				className='w-full h-auto block'
-				src={`https://image.tmdb.org/t/p/w500/${item?.backdrop_path}`}
-				alt={item?.title}
+				src={`https://image.tmdb.org/t/p/original/${
+					isLargeRow ? item.poster_path : item.backdrop_path
+				}`}
+				alt={item?.name}
+				className={
+					isLargeRow
+						? "h-48 md:w-48 md:h-72 object-contain cursor-pointer hover:scale-110 transition transform duration-150 ease-out rounded-lg"
+						: "absolute w-full h-full object-cover rounded-md hover:brightness-50 z-0"
+				}
 			/>
-			<div className='absolute top-0 left-0 w-full h-full hover:bg-black/80 hover:opacity-100 opacity-0 text-white'>
-				<p className='white-space-normal text-xs md:text-sm font-bold flex justify-center items-center h-full text-center'>
-					{item?.title}
-				</p>
-				<p onClick={saveShow}>
-					{like ? (
-						<FaHeart className='absolute top-4 left-4 text-gray-300' />
-					) : (
-						<FaRegHeart className='absolute top-4 left-4 text-gray-300' />
-					)}
-				</p>
-			</div>
+			<h2
+				className={`${
+					isLargeRow
+						? "hidden"
+						: "z-50 absolute bottom-5 text-center w-full text-white text-lg font-medium hidden group-hover:block cursor-pointer px-3"
+				}`}>
+				{item?.title || item.name || item.orignal_name}
+			</h2>
 		</div>
+
+		// <div className='hover:z-20 group w-80 h-48 hover:scale-110 duration-200 transition transform ease-out inline-block cursor-pointer relative p-2'>
+		// 	<img
+		// 		className='h-48 md:w-48 md:h-72 object-contain cursor-pointer hover:scale-110 transition transform duration-150 ease-out rounded-lg'
+		// 		src={`https://image.tmdb.org/t/p/w500/${item?.backdrop_path}`}
+		// 		alt={item?.title}
+		// 	/>
+		// 	<div className='absolute top-0 left-0 w-full h-full hover:bg-black/80 hover:opacity-100 opacity-0 text-white'>
+		// 		<p className='white-space-normal text-xs md:text-sm font-bold flex justify-center items-center h-full text-center'>
+		// 			{item?.title}
+		// 		</p>
+		// 		<p onClick={saveShow}>
+		// 			{like ? (
+		// 				<FaHeart className='absolute top-4 left-4 text-gray-300' />
+		// 			) : (
+		// 				<FaRegHeart className='absolute top-4 left-4 text-gray-300' />
+		// 			)}
+		// 		</p>
+		// 	</div>
+		// </div>
 	);
 };
 

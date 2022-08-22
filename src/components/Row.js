@@ -3,13 +3,16 @@ import React, { useEffect, useState } from "react";
 import Movie from "./Movie";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
-const Row = ({ title, fetchURL, rowID }) => {
+const Row = ({ title, fetchURL, rowID, isLargeRow = false }) => {
 	const [movies, setMovies] = useState([]);
 
 	useEffect(() => {
-		axios.get(fetchURL).then((response) => {
-			setMovies(response.data.results);
-		});
+		async function fetchData() {
+			const request = await axios.get(fetchURL);
+			setMovies(request.data.results);
+			return request;
+		}
+		fetchData();
 	}, [fetchURL]);
 
 	const slideLeft = () => {
@@ -23,28 +26,18 @@ const Row = ({ title, fetchURL, rowID }) => {
 	};
 
 	return (
-		<>
-			<h2 className='text-white font-bold md:text-xl p-4'>{title}</h2>
-			<div className='relative flex items-center group'>
-				<MdChevronLeft
-					size={40}
-					className='bg-white rounded-full absolute opacity-70 hover:opacity-100 cursor-pointer z-[10] hidden group-hover:block left-0'
-					onClick={slideLeft}
-				/>
-				<div
-					id={"slider" + rowID}
-					className='w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative'>
-					{movies.map((item, id) => (
-						<Movie key={id} item={item} />
-					))}
-				</div>
-				<MdChevronRight
-					size={40}
-					className='bg-white rounded-full absolute opacity-70 hover:opacity-100 cursor-pointer z-[10] hidden group-hover:block right-0'
-					onClick={slideRight}
-				/>
+		<div className='p-5'>
+			<h2 className='text-2xl font-medium md:text-4xl md:mb-5 text-white'>
+				{title}
+			</h2>
+			<div
+				id={"slider" + rowID}
+				className='flex space-x-5 py-5 overflow-y-hidden overflow-x-scroll scrollbar-hide'>
+				{movies?.map((item, id) => (
+					<Movie key={id} item={item} isLargeRow={isLargeRow} />
+				))}
 			</div>
-		</>
+		</div>
 	);
 };
 
