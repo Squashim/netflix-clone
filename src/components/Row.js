@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Movie from "./Movie";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
-const Row = ({ title, fetchURL, rowID, isLargeRow = false }) => {
+const Row = ({ title, fetchURL, rowID }) => {
 	const [movies, setMovies] = useState([]);
 
 	useEffect(() => {
@@ -41,7 +41,7 @@ const Row = ({ title, fetchURL, rowID, isLargeRow = false }) => {
 					id={"slider" + rowID}
 					className='relative flex space-x-5 py-5 overflow-y-hidden overflow-x-scroll scroll-smooth scrollbar-hide sm:pl-4'>
 					{movies?.map((item, id) => (
-						<Movie key={id} item={item} isLargeRow={isLargeRow} />
+						<Movie key={id} item={item} />
 					))}
 				</div>
 
