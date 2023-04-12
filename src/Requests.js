@@ -1,4 +1,4 @@
-const key = "a0aa5eb44f3d7898d92433972aa5afbb";
+const key = process.env.MOVIE_DB_KEY;
 
 const requests = {
 	requestTrending: `https://api.themoviedb.org/3/trending/all/week?api_key=${key}&language=en-US`,
