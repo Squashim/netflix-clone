@@ -20,13 +20,14 @@ const Signup = () => {
 
 	return (
 		<>
-			<div className='w-full h-screen'>
-				<img
-					className='hidden sm:block absolute w-full h-full object-cover'
-					src='https://assets.nflxext.com/ffe/siteui/vlv3/a1543997-c1fd-4946-92d3-b0a3648b92c7/d2f5b7b4-b60f-44ac-af0c-e674b4cc5917/PL-pl-20220808-popsignuptwoweeks-perspective_alpha_website_small.jpg'
-					alt='/'
-				/>
-				<div className=' bg-black/60 fixed top-0 left-0 w-full h-screen'></div>
+			<div className='w-full h-screen absolute sm:bg-cover sm:bg-[url("https://assets.nflxext.com/ffe/siteui/vlv3/a1543997-c1fd-4946-92d3-b0a3648b92c7/d2f5b7b4-b60f-44ac-af0c-e674b4cc5917/PL-pl-20220808-popsignuptwoweeks-perspective_alpha_website_small.jpg")] bg-none'>
+				<div className='w-full ml-[3%] h-[45px] xs:h-[75px] md:h-[90px] flex items-center'>
+					<img
+						src='https://www.freepnglogos.com/uploads/netflix-logo-0.png'
+						alt='Image from freepnglogos.com'
+						className='pt-2 xs:pt-0 w-[74px] xs:w-[167px] aspect-auto'
+					/>
+				</div>
 				<div className='fixed w-full px-4 py-24 z-50'>
 					<div className='max-w-[450px] h-[600px] mx-auto bg-black/70 text-white'>
 						<div className='max-w-[320px] mx-auto py-16'>

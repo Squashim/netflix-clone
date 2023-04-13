@@ -11,9 +11,7 @@ function App() {
 	return (
 		<>
 			<AuthContextProvider>
-				<Navbar />
 				<Routes>
-					<Route path='/' element={<Home />} />
 					<Route path='/login' element={<Login />} />
 					<Route path='/signup' element={<Signup />} />
 					<Route
@@ -22,6 +20,24 @@ function App() {
 							<ProtectedRoute>
 								<Account />
 							</ProtectedRoute>
+						}
+					/>
+					<Route
+						path='/'
+						element={
+							<ProtectedRoute>
+								<Navbar />
+								<Home />
+							</ProtectedRoute>
+						}
+					/>
+					<Route
+						path='*'
+						element={
+							//Future 404 error component
+							<div>
+								<h2>404 - Page not found</h2>
+							</div>
 						}
 					/>
 				</Routes>

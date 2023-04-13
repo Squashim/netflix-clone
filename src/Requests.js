@@ -1,4 +1,4 @@
-const key = process.env.MOVIE_DB_KEY;
+const key = process.env.REACT_APP_MOVIE_DB_KEY;
 
 const requests = {
 	requestTrending: `https://api.themoviedb.org/3/trending/all/week?api_key=${key}&language=en-US`,
