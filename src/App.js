@@ -6,6 +6,7 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Account from "./pages/Account";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Error_404 from "./pages/Error_404";
 
 function App() {
 	return (
@@ -31,15 +32,7 @@ function App() {
 							</ProtectedRoute>
 						}
 					/>
-					<Route
-						path='*'
-						element={
-							//Future 404 error component
-							<div>
-								<h2>404 - Page not found</h2>
-							</div>
-						}
-					/>
+					<Route path='*' element={<Error_404 />} />
 				</Routes>
 			</AuthContextProvider>
 		</>
